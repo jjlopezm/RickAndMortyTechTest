@@ -32,8 +32,11 @@ $> java -jar target/RickAndMortyAPI.jar
 ```
 
 ## How to test
-Just type in a browser... [http://localhost:8080/search-character-appearance?name=Rick Sanchez](http://localhost:8080/search-character-appearance?name=Rick Sanchez) and it will return 
-something like
+Just type in a browser... 
+```
+http://localhost:8080/search-character-appearance?name=Rick Sanchez
+``` 
+...and the response will be something like
 
 ```json
 {
@@ -46,10 +49,7 @@ something like
 }
 ```
 
-It is possible to test with the names:
+It is possible to test with the following names:
 - Rick Sanchez
 - Morty
 - Snuffles
-- Juanjo
-
-
