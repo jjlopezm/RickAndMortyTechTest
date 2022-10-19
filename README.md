@@ -32,7 +32,7 @@ $> java -jar target/RickAndMortyAPI.jar
 ```
 
 ## How to test
-Just type in a browser... http://localhost:8080/search-character-appearance?name=Rick Sanchez and it will return 
+Just type in a browser... [http://localhost:8080/search-character-appearance?name=Rick Sanchez] and it will return 
 something like
 
 ```json
