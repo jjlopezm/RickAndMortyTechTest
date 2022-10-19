@@ -32,17 +32,17 @@ $> java -jar target/RickAndMortyAPI.jar
 ```
 
 ## How to test
-Just type in a browser... [http://localhost:8080/search-character-appearance?name=Rick Sanchez]() and it will return 
+Just type in a browser... [http://localhost:8080/search-character-appearance?name=Rick Sanchez](http://localhost:8080/search-character-appearance?name=Rick Sanchez) and it will return 
 something like
 
 ```json
 {
-    "name": "Rick Sanchez",
-    "episodes": [
-        "Pilot",
-        "Episode2"
-    ],
-    "first_appearance": "2015-05-18"
+  "name": "Rick Sanchez",
+  "episodes": [
+    "Pilot",
+    "Episode2"
+  ],
+  "first_appearance": "01 diciembre de 2013"
 }
 ```
 
