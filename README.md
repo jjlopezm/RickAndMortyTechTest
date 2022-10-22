@@ -15,8 +15,8 @@ $> mvn clean install
 
 This command will generate the file "RickAndMortyAPI.jar" that can be executed in the "target" directory
 
-#Additional configuration
-It is possible to configure some parameters. The default ones are in directory
+## Additional configuration
+It is possible to configure some parameters. The default ones are in the project directory
 ```shell
 ./src/main/resources/application.properties
 ```
