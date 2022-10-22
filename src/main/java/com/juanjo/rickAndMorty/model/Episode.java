@@ -1,75 +1,45 @@
 package com.juanjo.rickAndMorty.model;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "episodes")
-public class Episode implements Comparable<Episode> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Episode implements Comparable<Episode>, Serializable {
+
     private int id;
     private String name;
-    private Date air_date;
+
+    @JsonProperty(value = "air_date")
+    private String airDate;
     private String episode;
-
-    public Episode() {
-    }
-
-    public Episode(int id, String name, Date air_date, String episode, Set<Character> characters) {
-        this.id = id;
-        this.name = name;
-        this.air_date = air_date;
-        this.episode = episode;
-        this.characters = characters;
-    }
-
-    @ManyToMany(mappedBy = "appears_episodes")
-    private Set<Character> characters;
+    private List<String> characters;
+    private String url;
+    private String created;
 
     @Override
     public int compareTo(Episode episode) {
-        return air_date.compareTo(episode.air_date);
-    }
 
-    public int getId() {
-        return id;
-    }
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = new SimpleDateFormat("MMMMM dd',' yyyy", Locale.ENGLISH).parse(airDate);
+            date2 = new SimpleDateFormat("MMMMM dd',' yyyy", Locale.ENGLISH).parse(episode.airDate);
+        } catch (ParseException e) {
+            System.out.println("ERROR: " + e.getMessage());
+            return 0;
+        }
+        return date1.compareTo(date2);
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getAir_date() {
-        return air_date;
-    }
-
-    public void setAir_date(Date air_date) {
-        this.air_date = air_date;
-    }
-
-    public String getEpisode() {
-        return episode;
-    }
-
-    public void setEpisode(String episode) {
-        this.episode = episode;
-    }
-
-    public Set<Character> getCharacters() {
-        return characters;
-    }
-
-    public void setCharacters(Set<Character> characters) {
-        this.characters = characters;
     }
 }

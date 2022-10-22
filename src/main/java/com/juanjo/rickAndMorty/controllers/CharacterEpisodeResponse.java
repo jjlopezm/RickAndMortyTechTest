@@ -6,13 +6,12 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Data
 @Builder
 public class CharacterEpisodeResponse {
     private String name;
     private List<String> episodes;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMMM 'de' yyyy")
-    private Date first_appearance;
+    private String first_appearance;
 }

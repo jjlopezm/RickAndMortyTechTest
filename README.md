@@ -1,19 +1,8 @@
 # Rick & Morty Tech Exercise
 
-This is a simple example of how to implement an API REST Get operation using an embedded H2 database with some data.
+The idea of this project is get information about the episodes of the Rick & Morty TV show where appears some 
+characters. To do that we will use this resource https://rickandmortyapi.com/documentation/
 
-The idea is to get information about the episodes of the Rick & Morty TV show where appears some characters.
-
-## Database Structure
-1. Table characters that contains the names of the characters.
-2. Table episodes with data about name, air date and other additional info about the episodes
-3. Relational "many to many" table named episode_characters that contains id of the character and id of the episode.
-
-The file that contains the initial data can be found in:
-
-```shell
-./src/main/resources/data.sql
-```
 
 ## Requirements
  - Java 11 or later
@@ -26,9 +15,50 @@ $> mvn clean install
 
 This command will generate the file "RickAndMortyAPI.jar" that can be executed in the "target" directory
 
+#Additional configuration
+It is possible to configure some parameters. The default ones are in directory
+```shell
+./src/main/resources/application.properties
+```
+
+The file structure is the following:
+```properties
+#api info
+api.url=https://rickandmortyapi.com/api
+api.characters_endpoint=/character
+api.episodes_endpoint=/episode
+
+#concurrency
+api.concurrency_enabled=false
+api.num_threads=10
+
+#date formats
+api.origin_date_format=MMMMM dd',' yyyy
+api.final_date_format=dd MMMMM yyyy
+```
+
+As you can see, it is possible to configure if you want to use concurrency and the number of threads to use. It will 
+be used to get Characters data from the resource api.
+
+It is possible to use your own properties file to run this app or use the default one.
+
+Example:
+```properties
+api.concurrency_enabled=true
+api.num_threads=10
+```
+
+The rest of parameters exists only to get updated if the resources API change.
+
 ## Run
+You can run the app with the default config...
 ```shell
 $> java -jar target/RickAndMortyAPI.jar
+```
+
+Or you can use your own config...
+```shell
+$> java -jar target/RickAndMortyAPI.jar --spring.config.location=/tmp/myconfig.properties
 ```
 
 ## How to test
@@ -43,13 +73,11 @@ http://localhost:8080/search-character-appearance?name=Rick Sanchez
   "name": "Rick Sanchez",
   "episodes": [
     "Pilot",
-    "Episode2"
+    "Lawnmower Dog",
+    ...
   ],
-  "first_appearance": "01 diciembre de 2013"
+  "first_appearance": "2 diciembre 2013"
 }
 ```
 
-It is possible to test with the following names:
-- Rick Sanchez
-- Morty
-- Snuffles
+
